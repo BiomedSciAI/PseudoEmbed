@@ -359,5 +359,6 @@ anndata >= 0.8, typer >= 0.9, and decoupler >= 2.0.
 ## Contact
 
 Matthew Madgwick — mattmadgwick@ibm.com
+Ching-Huei Tsou - ctsou@us.ibm.com
 
 [pep562]: https://peps.python.org/pep-0562/
