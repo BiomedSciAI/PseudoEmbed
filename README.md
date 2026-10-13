@@ -71,7 +71,7 @@ neither analysis runs without it.
 ```bash
 uv venv pseudoembed_env --python 3.12
 source pseudoembed_env/bin/activate
-uv pip install git+ssh://git@github.com:BiomedSciAI/PseudoEmbed.git
+uv pip install https://github.com/BiomedSciAI/PseudoEmbed.git
 ```
 
 ## From clone
