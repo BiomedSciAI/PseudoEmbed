@@ -71,13 +71,13 @@ neither analysis runs without it.
 ```bash
 uv venv pseudoembed_env --python 3.12
 source pseudoembed_env/bin/activate
-uv pip install git+ssh://git@github.ibm.com/scDynamics/PseudoEmbed.git
+uv pip install git+ssh://git@github.com:BiomedSciAI/PseudoEmbed.git
 ```
 
 ## From clone
 
 ```bash
-git clone git@github.ibm.com:scDynamics/PseudoEmbed.git
+git clone git@github.com:BiomedSciAI/PseudoEmbed.git
 cd pseudoembed
 uv pip install -e ".[dev]"
 ```
