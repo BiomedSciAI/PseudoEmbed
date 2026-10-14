@@ -118,14 +118,14 @@ $$
 where $\lambda_j$ is the eigenvalue associated with eigenvector $\phi_j$.
 The scaling function is selected by `--embedding-scale`:
 
-$$
+```math
 f(\lambda) =
 \begin{cases}
-\dfrac{\lambda}{1-\lambda}, & \texttt{dpt}\ \text{(default)}, \\[6pt]
-\lambda^t, & \texttt{power}, \\[4pt]
-1, & \texttt{unit}.
+\frac{\lambda}{1-\lambda}, & \text{dpt (default)}, \\
+\lambda^t, & \text{power}, \\
+1, & \text{unit}.
 \end{cases}
-$$
+```
 
 For `power`, the exponent $t$ is set by `--spectral-time-scale`.
 For `unit`, the eigenvectors are used without eigenvalue scaling.
