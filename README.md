@@ -82,6 +82,40 @@ flowchart TD
     condition -.-> outputs
 ```
 
+## Installation
+
+`decoupler` is a required dependency, not an optional one: both the TF and the
+pathway view are built from its univariate linear model (ULM) activity scores, so
+neither analysis runs without it.
+
+### Clone the repo
+```bash
+git clone https://github.com/BiomedSciAI/PseudoEmbed.git
+```
+
+### Create and activate a virtual environment in the newly created folder 
+```bash
+cd PseudoEmbed
+uv venv .pseudoembed_env --python 3.12
+source .pseudoembed_env/bin/activate
+```
+
+### Install selected packages from the cloned repo
+
+```bash
+uv pip install -e ".[dev, notebook]"
+```
+
+Extras:
+
+| Extra | Contents | When you need it |
+|---|---|---|
+| `dev` | pytest, pytest-cov, black, ruff, mypy | Running the test suite or linting |
+| `full` | `decoupler[full]`, dcor, igraph, gprofiler-official | GO enrichment, distance correlation |
+| `benchmark` | palantir, pyyaml | The `experiments/benchmark` evaluation suite |
+| `hypergraph` | xgi | Optional hypergraph utilities |
+| `notebook` | jupyterlab, ipywidgets | Interactive work |
+
 ## Start here
 
 An example tutorial notebooks in [`examples/`](examples/):
@@ -147,40 +181,6 @@ The distance from the root is computed either as a **graph geodesic**
 (shortest-path distance) on a $k$-nearest-neighbor graph in the embedding
 (`--pseudotime-method geodesic`, the default), or as a **straight chord**
 (Euclidean distance) in the embedding (`--pseudotime-method chord`).
-
-## Installation
-
-`decoupler` is a required dependency, not an optional one: both the TF and the
-pathway view are built from its univariate linear model (ULM) activity scores, so
-neither analysis runs without it.
-
-### Clone the repo
-```bash
-git clone https://github.com/BiomedSciAI/PseudoEmbed.git
-```
-
-### Create and activate a virtual environment in the newly created folder 
-```bash
-cd PseudoEmbed
-uv venv .pseudoembed_env --python 3.12
-source .pseudoembed_env/bin/activate
-```
-
-### Install selected packages from the cloned repo
-
-```bash
-uv pip install -e ".[dev, notebook]"
-```
-
-Extras:
-
-| Extra | Contents | When you need it |
-|---|---|---|
-| `dev` | pytest, pytest-cov, black, ruff, mypy | Running the test suite or linting |
-| `full` | `decoupler[full]`, dcor, igraph, gprofiler-official | GO enrichment, distance correlation |
-| `benchmark` | palantir, pyyaml | The `experiments/benchmark` evaluation suite |
-| `hypergraph` | xgi | Optional hypergraph utilities |
-| `notebook` | jupyterlab, ipywidgets | Interactive work |
 
 ## Command-line interface
 
