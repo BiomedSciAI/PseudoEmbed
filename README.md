@@ -94,26 +94,46 @@ if the kernel dies with no traceback (a `libomp` clash inside decoupler).
 
 ## Method
 
-Each view contributes hyperedges (sets of cells) with weights. From the incidence
-matrix `H`, edge weights `W`, and the vertex/edge degree matrices `Dv`/`De`, the
-per-view operator is
+Each view contributes weighted hyperedges (sets of cells). Let $H$ denote the
+incidence matrix, $W$ the diagonal matrix of hyperedge weights, and $D_v$ and
+$D_e$ the diagonal vertex- and edge-degree matrices. The per-view operator is
 
-```
-S = Dv^{-1/2} H W De^{-1} H^T Dv^{-1/2}
-```
+$$
+S = D_v^{-\frac{1}{2}} H W D_e^{-1} H^{\top} D_v^{-\frac{1}{2}}.
+$$
 
-which is symmetric and positive semi-definite with eigenvalues in `[0, 1]`. Views
-are combined either by averaging their operators (`--fusion-method operator`, the
-default, "late" fusion) or by pooling their hyperedges before building a single
-operator (`--fusion-method edge`, "early" fusion).
+This operator is symmetric and positive semidefinite, with eigenvalues in
+$[0,1]$. Views are combined either by averaging their operators
+(`--fusion-method operator`, the default, or **late fusion**) or by pooling
+their hyperedges before building a single operator
+(`--fusion-method edge`, or **early fusion**).
 
-Pseudotime is the distance from a root cell in the scaled spectral embedding
-`emb[cell, j] = f(lambda_j) * phi_j[cell]`, where `f` is set by
-`--embedding-scale`: `dpt` gives `lambda/(1 - lambda)` (default), `power` gives
-`lambda^t` with `t = --spectral-time-scale`, and `unit` leaves eigenvalues raw.
-The distance itself is either a graph geodesic on a kNN manifold
-(`--pseudotime-method geodesic`, default) or a straight chord in the embedding
-(`chord`).
+Pseudotime is the distance from a root cell in a scaled spectral embedding.
+For cell $i$ and retained spectral component $j$, the embedding coordinate is
+
+$$
+z_{ij} = f(\lambda_j)\,\phi_j(i),
+$$
+
+where $\lambda_j$ is the eigenvalue associated with eigenvector $\phi_j$.
+The scaling function is selected by `--embedding-scale`:
+
+$$
+f(\lambda) =
+\begin{cases}
+\dfrac{\lambda}{1-\lambda}, & \texttt{dpt}\ \text{(default)}, \\[6pt]
+\lambda^t, & \texttt{power}, \\[4pt]
+1, & \texttt{unit}.
+\end{cases}
+$$
+
+For `power`, the exponent $t$ is set by `--spectral-time-scale`.
+For `unit`, the eigenvectors are used without eigenvalue scaling.
+
+The distance from the root is computed either as a **graph geodesic**
+(shortest-path distance) on a $k$-nearest-neighbor graph in the embedding
+(`--pseudotime-method geodesic`, the default), or as a **straight chord**
+(Euclidean distance) in the embedding (`--pseudotime-method chord`).
 
 ## Installation
 
