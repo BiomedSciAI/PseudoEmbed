@@ -89,8 +89,10 @@ import pseudoembed
 adata = pseudoembed.richard2018()   # downloads E-MTAB-6051 once, then caches
 ```
 
+<!--
 See [`examples/README.md`](examples/README.md) for how to run them, and what to do
 if the kernel dies with no traceback (a `libomp` clash inside decoupler).
+-->
 
 ## Method
 
