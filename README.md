@@ -66,20 +66,22 @@ The distance itself is either a graph geodesic on a kNN manifold
 pathway view are built from its univariate linear model (ULM) activity scores, so
 neither analysis runs without it.
 
-## From git repo
-
+### Clone the repo
 ```bash
-uv venv pseudoembed_env --python 3.12
-source pseudoembed_env/bin/activate
-uv pip install https://github.com/BiomedSciAI/PseudoEmbed.git
+git clone https://github.com/BiomedSciAI/PseudoEmbed.git
 ```
 
-## From clone
+### Create and activate a virtual environment in the newly created folder 
+```bash
+cd PseudoEmbed
+uv venv .pseudoembed_env --python 3.12
+source .pseudoembed_env/bin/activate
+```
+
+### Install selected packages from the cloned repo
 
 ```bash
-git clone git@github.com:BiomedSciAI/PseudoEmbed.git
-cd pseudoembed
-uv pip install -e ".[dev]"
+uv pip install -e ".[dev, notebook]"
 ```
 
 Extras:
