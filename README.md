@@ -16,6 +16,7 @@ Two analyses are supported, and they are the whole of the public surface:
 - **(B) Gene attribution analysis** — rank the programmes and genes responsible
   for the trajectory and for a condition contrast along it.
 
+---
 ## PseudoEmbed workflow
 
 PseudoEmbed builds named sets of cells from complementary representations of single-cell RNA expression, combines their hypergraphs, and computes a trajectory. The fitted axis and the original hyperedges then support validation and biological interpretation.
@@ -82,6 +83,7 @@ flowchart TD
     condition -.-> outputs
 ```
 
+---
 ## Installation
 
 `decoupler` is a required dependency, not an optional one: both the TF and the
@@ -116,6 +118,7 @@ Extras:
 | `hypergraph` | xgi | Optional hypergraph utilities |
 | `notebook` | jupyterlab, ipywidgets | Interactive work |
 
+---
 ## Start here
 
 An example tutorial notebooks in [`examples/`](examples/):
@@ -139,7 +142,8 @@ See [`examples/README.md`](examples/README.md) for how to run them, and what to 
 if the kernel dies with no traceback (a `libomp` clash inside decoupler).
 -->
 
-### A people analogy
+---
+## A people analogy
 
 For readers more familiar with computer science than biology, imagine each cell
 as a person described through several **views**: physical traits, academic
@@ -153,6 +157,7 @@ not necessarily alike.
 
 [Download the illustrated people-analogy slides (PowerPoint)](docs/PseudoEmbed_People_Analogy.pptx)
 
+---
 ## Key concepts
 
 | Concept | Meaning in PseudoEmbed | People analogy |
@@ -184,6 +189,7 @@ not necessarily alike.
 lifetimes. Early cells can be heterogeneous, development can branch, and neither
 an axis nor pseudotime automatically represents biological age.
 
+---
 ## Method
 
 Each view contributes weighted hyperedges (sets of cells). Let $H$ denote the
@@ -227,6 +233,7 @@ The distance from the root is computed either as a **graph geodesic**
 (`--pseudotime-method geodesic`, the default), or as a **straight chord**
 (Euclidean distance) in the embedding (`--pseudotime-method chord`).
 
+---
 ## Command-line interface
 
 The CLI has exactly two commands.
@@ -306,6 +313,7 @@ single batch, but both need attention:
 
 Run `pseudoembed hypergraph-analysis --help` for the full annotated list.
 
+---
 ## Python API
 
 Heavy dependencies are imported lazily ([PEP 562][pep562]), so `import
@@ -364,6 +372,7 @@ Available directly from the `pseudoembed` namespace:
 
 *Supporting* — `load_raw_data`, `run_functional_analysis`, `run_go_enrichment`
 
+---
 ## Package layout
 
 ```
@@ -386,6 +395,7 @@ pseudoembed/
 submodule imports — every module there reaches for scanpy, decoupler, or
 matplotlib. Import submodules directly, or use the lazy top-level re-exports.
 
+---
 ## Outputs
 
 Written to `--output-dir`:
@@ -399,6 +409,7 @@ Written to `--output-dir`:
 `..._genes_all.csv`, `..._stability.csv`, `..._edge_enrichment_raw.csv`,
 `..._edge_contributions_raw.csv`, `..._driver_summary.png`
 
+---
 ## Benchmark suite
 
 `experiments/benchmark/` evaluates (A) against DPT and Palantir:
@@ -422,6 +433,7 @@ only **rank** changes count as regressions.
 
 `benchmark/cache/` is not version-controlled and regenerates on first run.
 
+---
 ## Development
 
 ```bash
@@ -450,6 +462,7 @@ likewise hide benchmark CSVs and the PDFs under `docs/` and `slides/`. If you
 want those artefacts versioned, root-anchor the pattern (`/results/`) and add
 negations.
 
+---
 ## Status and known limitations
 
 Read this before quoting a number out of this package.
@@ -485,12 +498,14 @@ test inspects `plt.gcf()`, so the test examines an empty figure), and 2 are a
 pandas 3.0 / anndata `ArrowStringArray` incompatibility in one environment's test
 fixture. They are documented rather than silenced.
 
+---
 ## Requirements
 
 Python >= 3.10, with numpy >= 1.21, pandas >= 1.3, scipy >= 1.7,
 scikit-learn >= 1.0, matplotlib >= 3.4, seaborn >= 0.11, scanpy >= 1.10,
 anndata >= 0.8, typer >= 0.9, and decoupler >= 2.0.
 
+---
 ## Contact
 
 - Matthew Madgwick mattmadgwick@ibm.com
