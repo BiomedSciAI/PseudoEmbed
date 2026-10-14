@@ -16,6 +16,61 @@ Two analyses are supported, and they are the whole of the public surface:
 - **(B) Gene attribution analysis** — rank the programmes and genes responsible
   for the trajectory and for a condition contrast along it.
 
+## PseudoEmbed workflow
+
+PseudoEmbed builds named sets of cells from complementary representations of single-cell RNA expression, combines their hypergraphs, and computes a trajectory. The fitted axis and the original hyperedges then support validation and biological interpretation.
+
+```mermaid
+flowchart TD
+    raw["Raw scRNA-seq counts and cell metadata"]
+    prep["Preprocess: QC, filtering, normalization, log1p, and HVG selection"]
+    existing["Compatible preprocessed data or prepared dataset loader"]
+    adata["Prepared AnnData: expression, gene symbols, and metadata"]
+
+    raw --> prep
+    prep --> adata
+    existing -->|Skip repeat preprocessing| adata
+
+    subgraph views ["Construct cell-set views"]
+        tf["TF: CollecTRI and ULM activity"]
+        pathway["Pathway: PROGENy and ULM activity bins"]
+        gene["Gene: high-expression cell sets"]
+        pca["Optional PCA: neighborhoods in PC space"]
+    end
+
+    adata --> tf
+    adata --> pathway
+    adata --> gene
+    adata -.-> pca
+
+    edges["Named hyperedges, weights, and aligned metadata"]
+    tf --> edges
+    pathway --> edges
+    gene --> edges
+    pca -.-> edges
+
+    fusion["Normalize and fuse views: operator averaging or edge fusion"]
+    fit["Time weighting, root selection, and scaled spectral embedding"]
+    axis["Root-to-cell distance: pseudotime and embedding"]
+    edges --> fusion
+    fusion --> fit
+    fit --> axis
+
+    validation["Validation and sensitivity checks"]
+    interpretation["Edge contribution, direction, onset, and profiles"]
+    condition["Optional condition analysis: programme drivers and gene attribution"]
+    axis --> validation
+    axis --> interpretation
+    axis -.-> condition
+    edges -->|Reuse the same edge identities| interpretation
+    edges -.-> condition
+
+    outputs["Outputs: fitted AnnData, ranked tables, and figures"]
+    validation --> outputs
+    interpretation --> outputs
+    condition -.-> outputs
+```
+
 ## Start here
 
 An example tutorial notebooks in [`examples/`](examples/):
