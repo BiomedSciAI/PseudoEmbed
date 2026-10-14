@@ -139,6 +139,51 @@ See [`examples/README.md`](examples/README.md) for how to run them, and what to 
 if the kernel dies with no traceback (a `libomp` clash inside decoupler).
 -->
 
+### A people analogy
+
+For readers more familiar with computer science than biology, imagine each cell
+as a person described through several **views**: physical traits, academic
+performance, and athletic abilities. Groups such as “strong at math” become
+named **hyperedges**, and each person can belong to several overlapping groups.
+PseudoEmbed combines these memberships into a map of similarities. Starting
+from an infant-like reference, it measures distance through the map to estimate
+**pseudotime**—a progression coordinate, rather than actual age. The analogy
+illustrates the method; real cell development can branch, and early cells are
+not necessarily alike.
+
+[Download the illustrated people-analogy slides (PowerPoint)](docs/PseudoEmbed_People_Analogy.pptx)
+
+## Key concepts
+
+| Concept | Meaning in PseudoEmbed | People analogy |
+|---|---|---|
+| **Cell / vertex** | One cell is one vertex in the hypergraph. | Each person is one individual in the population. |
+| **View** | A way of describing relationships among the same cells, such as gene expression, TF activity, pathway activity, or optional PCA neighborhoods. These views can all come from the same RNA data. | Looking at the same people through physical traits, academic performance, or athletic abilities. |
+| **Activity score** | An inferred measure of TF or pathway activity based on the expression of associated genes. It is not a direct measurement of protein activity. | Inferring mathematical ability from performance across several math tasks. |
+| **Hyperedge** | A set of cells grouped by a shared feature or activity range. Unlike an ordinary edge, a hyperedge can connect more than two cells. | A group such as “strong at math” or “similar height.” One person can belong to many groups. |
+| **Named hyperedge** | A hyperedge with an interpretable label identifying its feature or grouping rule, such as a TF, pathway activity bin, or gene. | A group labeled “high math performance,” rather than an unnamed cluster. |
+| **Hyperedge weight** | A numerical value controlling how strongly a hyperedge contributes to the operator. | Giving some shared traits more influence when assessing similarities between people. |
+| **Hypergraph** | The collection of cells and their overlapping hyperedges. | The entire population together with all its overlapping interest, ability, and appearance groups. |
+| **Incidence matrix $H$** | A matrix recording which cells belong to which hyperedges. Rows represent cells; columns represent hyperedges. | A membership spreadsheet: people in rows and groups in columns. |
+| **Degree** | Vertex degree measures a cell’s weighted hyperedge membership; edge degree measures a hyperedge’s size. These support normalization. | How many groups a person belongs to, and how many people each group contains. |
+| **Operator $S$** | A normalized matrix summarizing relationships between cells through shared hyperedges. Its spectral decomposition produces the embedding. | A rule that relates people through their shared group memberships while accounting for group sizes and participation. |
+| **Fusion** | Combining views: operator fusion averages separately constructed operators; edge fusion pools hyperedges before constructing one operator. | Combining separate assessments of similarity, or first combining all group memberships into one system. |
+| **Spectral axis / eigenvector $\phi_j$** | A pattern of variation across the hypergraph that assigns each cell a coordinate. Its biological meaning must be interpreted afterward. | A direction that separates people by a combination of traits; it might reflect development or a pattern of abilities. |
+| **Eigenvalue $\lambda_j$** | A value associated with a spectral axis that characterizes its behavior under the operator and determines its scaling. It is not automatically a measure of biological importance. | How strongly a pattern is preserved when information is shared through the groups. |
+| **Embedding** | A representation of each cell using coordinates on several retained spectral axes. | Placing each person on a map whose directions summarize patterns across their traits and group memberships. |
+| **Embedding scale** | The function $f(\lambda_j)$ that rescales each axis: $z_{ij}=f(\lambda_j)\phi_j(i)$. This changes distances in the embedding. | Stretching or shrinking different directions on the map so they contribute differently to distance. |
+| **Root cell** | The selected starting cell from which pseudotime distances are measured, ideally supported by biological knowledge. | Choosing an infant-like individual as the starting reference for a developmental comparison. |
+| **kNN graph** | A graph connecting each cell to nearby cells in the embedding. It provides local paths for geodesic distance. | Connecting each person to a small number of nearby people on the map. |
+| **Geodesic distance** | Shortest-path distance along the embedding’s kNN graph. | Following connected paths through the map, including bends. |
+| **Chord distance** | Straight-line Euclidean distance between cells in the embedding. | Measuring directly between two people’s positions on the map. |
+| **Pseudotime** | Distance from the root in the selected embedding, used as a progression coordinate. It is not elapsed time or proof of ancestry. | Estimating how far someone lies from an infant-like starting state, without claiming their actual age or observing their life history. |
+| **Hyperedge contribution** | A score describing how a hyperedge supports a selected spectral pattern. It does not establish causation. | Asking which groups help explain a direction on the map, without claiming those groups caused people to develop that way. |
+| **Validation** | Checking whether the inferred progression agrees with relevant evidence, such as sampling time or held-out protein measurements. | Checking whether the inferred developmental ordering agrees with independently measured indicators of maturity. |
+
+**Analogy limits:** Cells are observed as snapshots, not followed through individual
+lifetimes. Early cells can be heterogeneous, development can branch, and neither
+an axis nor pseudotime automatically represents biological age.
+
 ## Method
 
 Each view contributes weighted hyperedges (sets of cells). Let $H$ denote the
