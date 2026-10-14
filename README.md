@@ -21,6 +21,18 @@ Two analyses are supported, and they are the whole of the public surface:
 PseudoEmbed builds named sets of cells from complementary representations of single-cell RNA expression, combines their hypergraphs, and computes a trajectory. The fitted axis and the original hyperedges then support validation and biological interpretation.
 
 ```mermaid
+%%{init: {
+  'theme': 'base',
+  'themeVariables': {
+    'fontSize': '11px',
+    'labelFontSize': '10px'
+  },
+  'flowchart': {
+    'nodeSpacing': 15,
+    'rankSpacing': 20,
+    'padding': 5
+  }
+}}%%
 flowchart TD
     raw["Raw scRNA-seq counts and cell metadata"]
     prep["Preprocess: QC, filtering, normalization, log1p, and HVG selection"]
