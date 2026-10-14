@@ -145,6 +145,8 @@ if the kernel dies with no traceback (a `libomp` clash inside decoupler).
 ---
 ## A people analogy
 
+<img width="552" height="456" alt="people_cell" src="https://github.com/user-attachments/assets/04df2378-a1d7-4e42-b183-30ebb1d98f2b" />
+
 For readers more familiar with computer science than biology, imagine each cell
 as a person described through several **views**: physical traits, academic
 performance, and athletic abilities. Groups such as “strong at math” become
