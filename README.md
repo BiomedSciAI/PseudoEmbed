@@ -147,15 +147,7 @@ if the kernel dies with no traceback (a `libomp` clash inside decoupler).
 
 <img width="552" height="456" alt="people_cell" src="https://github.com/user-attachments/assets/04df2378-a1d7-4e42-b183-30ebb1d98f2b" />
 
-For readers more familiar with computer science than biology, imagine each cell
-as a person described through several **views**: physical traits, academic
-performance, and athletic abilities. Groups such as “strong at math” become
-named **hyperedges**, and each person can belong to several overlapping groups.
-PseudoEmbed combines these memberships into a map of similarities. Starting
-from an infant-like reference, it measures distance through the map to estimate
-**pseudotime**—a progression coordinate, rather than actual age. The analogy
-illustrates the method; real cell development can branch, and early cells are
-not necessarily alike.
+For users more familiar with computer science than biology, imagine each cell as a person described through several views: physical traits, academic performance, and athletic abilities. Groups such as “strong at math” become named hyperedges, and each person can belong to several overlapping groups. People may share an early developmental path before specializing into different careers, such as medicine or engineering, analogous to cells differentiating into different cell types. Traits such as math ability can span multiple branches. PseudoEmbed combines these overlapping memberships into a map of similarities and measures distance from an infant-like reference to estimate pseudotime, a progression coordinate rather than actual age. People on different career paths can be equally far from that starting point, so pseudotime alone does not identify their branch or destination.
 
 [Download the illustrated people-analogy slides (PowerPoint)](docs/PseudoEmbed_People_Analogy.pptx)
 
