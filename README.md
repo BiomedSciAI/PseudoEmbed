@@ -22,7 +22,6 @@ PseudoEmbed builds named sets of cells from complementary representations of sin
 
 ```mermaid
 %%{init: {
-  'theme': 'base',
   'themeVariables': {
     'fontSize': '11px',
     'labelFontSize': '10px'
