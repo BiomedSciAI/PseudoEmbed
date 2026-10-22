@@ -95,10 +95,15 @@ neither analysis runs without it.
 git clone https://github.com/BiomedSciAI/PseudoEmbed.git
 ```
 
-### Install uv
+### Install uv if you don't already have it
 ```bash
 curl -LsSf https://astral.sh | sh
 ```
+or (if you already have Python installed)
+```bash
+pip install uv
+```
+
 
 ### Create and activate a virtual environment in the newly created folder 
 ```bash
